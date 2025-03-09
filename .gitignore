@@ -38,12 +38,15 @@ logs/
 *.ipynb
 
 # Generated output
-reconstruction_frames/
-*.png
-*.jpg
-*.jpeg
-*.mp4
-*.gif
+# reconstruction_frames/  # Allowing this directory to be included in the repository
+!*.png
+!*.jpg
+!*.jpeg
+!*.mp4
+!*.gif
+!reconstruction_frames/**/*.png  # Allow PNG files in the reconstruction_frames directory
+# Allow PDF files
+!*.pdf
 
 # OS-specific
 .DS_Store
