@@ -37,15 +37,13 @@ logs/
 .ipynb_checkpoints
 *.ipynb
 
-# Generated output
-# reconstruction_frames/  # Allowing this directory to be included in the repository
-!*.png
-!*.jpg
-!*.jpeg
-!*.mp4
-!*.gif
-!reconstruction_frames/**/*.png  # Allow PNG files in the reconstruction_frames directory
-# Allow PDF files
+# Allow important visual assets
+# We specifically want to include these for pedagogical purposes
+!reconstruction_frames/
+!reconstruction_progress.gif
+!final_reconstructions.png
+!final_samples.png
+!loss_curve.png
 !*.pdf
 
 # OS-specific

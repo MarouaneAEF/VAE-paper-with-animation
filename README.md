@@ -2,6 +2,12 @@
 
 This repository contains a PyTorch implementation of a Variational Autoencoder (VAE) trained on the CIFAR-10 dataset. The code is structured to be clear, well-documented, and educational.
 
+## Visualization of Model Convergence
+
+![VAE Training Progress](reconstruction_progress.gif)
+
+**The animation above is included for pedagogical purposes.** It shows the progressive improvement of the VAE's reconstruction capabilities during training. The top row displays original images from the CIFAR-10 dataset, while the bottom row shows the corresponding reconstructions produced by the VAE at different training epochs. This visualization is invaluable for understanding how VAEs learn to compress and reconstruct data over time.
+
 ## What is a VAE?
 
 A Variational Autoencoder (VAE) is a type of generative model that learns to encode data into a latent space distribution and decode samples from that distribution back into data. Unlike regular autoencoders, VAEs model the latent space as a probability distribution, which allows for generating new data by sampling from this distribution.
@@ -43,6 +49,7 @@ Our implementation includes:
 - Random samples generated from the latent space
 - 2D visualization of the latent space using t-SNE or PCA
 - Interpolation between samples in the latent space
+- **Progressive reconstruction visualization**: The included animation shows how reconstructions improve throughout training, which is essential for understanding the learning dynamics of VAEs.
 
 ## Installation
 
@@ -71,13 +78,15 @@ python main.py --batch_size 64 --epochs 100 --lr 0.001 --latent_dim 64 --beta 1.
 
 ### Parameters
 
-- `--batch_size`: Size of the training batch (default: 128)
-- `--epochs`: Number of training epochs (default: 50)
+- `--batch_size`: Size of the training batch (default: 64)
+- `--epochs`: Number of training epochs (default: 10)
 - `--lr`: Learning rate (default: 1e-3)
 - `--latent_dim`: Dimensionality of the latent space (default: 128)
 - `--beta`: Weight of the KL divergence term (default: 1.0)
 - `--save_path`: Path to save the trained model (default: 'vae_cifar10.pth')
 - `--device`: Device to train on (default: 'cuda' if available, otherwise 'cpu')
+- `--reconstruction_interval`: Save reconstruction images every N epochs (default: 1)
+- `--video_fps`: Frames per second for the reconstruction progress video (default: 2)
 
 ## Results
 
@@ -87,6 +96,7 @@ During and after training, the model will generate:
 - Reconstructed images at regular intervals to show learning progress
 - Generated samples from random points in the latent space
 - Visualization of the latent space structure
+- An animation demonstrating the progressive improvement of reconstructions for educational purposes
 
 ## Files Organization
 
@@ -94,6 +104,8 @@ During and after training, the model will generate:
 - `vae_model.py`: Implementation of the VAE architecture and loss function
 - `utils.py`: Utility functions for visualization and data processing
 - `requirements.txt`: Required Python packages
+- `reconstruction_frames/`: Contains individual frames showing the progression of reconstruction quality
+- `reconstruction_progress.gif`: Animation showing how reconstructions improve throughout training
 
 ## References
 
