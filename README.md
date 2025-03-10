@@ -32,7 +32,7 @@ Loss = Reconstruction Loss + β * KL Divergence
 ```
 
 Where β is a hyperparameter that controls the trade-off between reconstruction quality and the structure of the latent space.
-The hyperparameters can be fine-tuned using, for example, a Bayesian optimization framework
+Remark: The hyperparameters can be fine-tuned using, for example, a Bayesian optimization framework (experimental design coming soon...).
 
 ## Implementation Details
 
