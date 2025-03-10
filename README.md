@@ -104,7 +104,7 @@ This script will:
 3. Combine them into a GIF animation at 2 frames per second
 4. Save the result as `reconstruction_progress.gif`
 
-The current animation includes 13 frames, starting from epoch 0 (untrained model) through epoch 12, showing the complete learning progression of the VAE.
+The current animation includes 50 frames, starting from epoch 0 (untrained model) through epoch 50 (trained model), showing the complete learning progression of the VAE.
 
 You can customize this process by modifying the parameters in the script.
 

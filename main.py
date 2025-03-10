@@ -26,13 +26,13 @@ np.random.seed(42)
 def parse_args():
     parser = argparse.ArgumentParser(description='Train a VAE on CIFAR-10')
     parser.add_argument('--batch_size', type=int, default=64, help='Batch size for training')
-    parser.add_argument('--epochs', type=int, default=10, help='Number of epochs to train')
+    parser.add_argument('--epochs', type=int, default=10, help='Number of training epochs')
     parser.add_argument('--lr', type=float, default=1e-3, help='Learning rate')
     parser.add_argument('--latent_dim', type=int, default=128, help='Dimensionality of the latent space')
     parser.add_argument('--beta', type=float, default=1.0, help='Beta coefficient for KL divergence term')
     parser.add_argument('--save_path', type=str, default='vae_cifar10.pth', help='Path to save model')
-    parser.add_argument('--device', type=str, default='cuda' if torch.cuda.is_available() else 'cpu',
-                        help='Device to train on')
+    parser.add_argument('--device', type=str, default=None, 
+                        help='Device to train on (options: "cuda", "mps", "cpu", or None for auto-detection)')
     parser.add_argument('--reconstruction_interval', type=int, default=1, 
                         help='Save reconstruction images every N epochs')
     parser.add_argument('--video_fps', type=int, default=2, 
@@ -91,7 +91,27 @@ def validate(model, dataloader, beta, device):
 
 def main():
     args = parse_args()
-    device = torch.device(args.device)
+    
+    # Device selection logic for different hardware
+    if args.device is None:
+        # Auto-detect the best available device
+        if torch.cuda.is_available():
+            device = torch.device("cuda")
+            print("🚀 Using NVIDIA GPU (CUDA)")
+        elif torch.backends.mps.is_available():
+            device = torch.device("mps")
+            print("🚀 Using Apple Silicon GPU (M-series)")
+        else:
+            device = torch.device("cpu")
+            print("⚠️ No GPU detected, using CPU")
+    else:
+        device = torch.device(args.device)
+        if args.device == "mps":
+            print("🚀 Using Apple Silicon GPU (M-series) as specified")
+        elif args.device == "cuda":
+            print("🚀 Using NVIDIA GPU (CUDA) as specified")
+        else:
+            print(f"Using device: {device}")
     
     # Create reconstruction frames directory
     os.makedirs('reconstruction_frames', exist_ok=True)
@@ -214,7 +234,7 @@ def main():
         
         # Plot final random samples from the model
         plot_generated_images(model, 16, args.epochs, device, grid_size=(4, 4), filename='final_samples.png')
-        print("🖼️ Generated samples saved to 'final_samples.png'")
+        print("��️ Generated samples saved to 'final_samples.png'")
         
     except KeyboardInterrupt:
         print("\n⚠️ Training interrupted by user")
