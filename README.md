@@ -32,6 +32,7 @@ Loss = Reconstruction Loss + β * KL Divergence
 ```
 
 Where β is a hyperparameter that controls the trade-off between reconstruction quality and the structure of the latent space.
+The hyperparameters can be fine-tuned using, for example, a Bayesian optimization framework
 
 ## Implementation Details
 
@@ -57,8 +58,8 @@ Our implementation includes:
 
 ```bash
 # Clone the repository
-git clone <repository-url>
-cd vae-cifar10
+git clone https://github.com/MarouaneAEF/VAE-paper-with-animation.git
+cd VAE-paper-with-animation
 
 # Install requirements
 pip install -r requirements.txt
@@ -104,7 +105,7 @@ This script will:
 3. Combine them into a GIF animation at 2 frames per second
 4. Save the result as `reconstruction_progress.gif`
 
-The current animation includes 50 frames, starting from epoch 0 (untrained model) through epoch 50 (trained model), showing the complete learning progression of the VAE.
+The current animation includes 100 frames, starting from epoch 0 (untrained model) through epoch 100 (trained model), showing the complete learning progression of the VAE.
 
 You can customize this process by modifying the parameters in the script.
 
