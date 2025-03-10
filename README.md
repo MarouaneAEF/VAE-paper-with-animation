@@ -8,6 +8,8 @@ This repository contains a PyTorch implementation of a Variational Autoencoder (
 
 **The animation above is included for pedagogical purposes.** It shows the progressive improvement of the VAE's reconstruction capabilities during training. The top row displays original images from the CIFAR-10 dataset, while the bottom row shows the corresponding reconstructions produced by the VAE at different training epochs. This visualization is invaluable for understanding how VAEs learn to compress and reconstruct data over time.
 
+*This animation was created using the `create_gif.py` script in this repository, which combines individual frame images showing reconstructions across 10 epochs of training.*
+
 ## What is a VAE?
 
 A Variational Autoencoder (VAE) is a type of generative model that learns to encode data into a latent space distribution and decode samples from that distribution back into data. Unlike regular autoencoders, VAEs model the latent space as a probability distribution, which allows for generating new data by sampling from this distribution.
@@ -88,6 +90,22 @@ python main.py --batch_size 64 --epochs 100 --lr 0.001 --latent_dim 64 --beta 1.
 - `--reconstruction_interval`: Save reconstruction images every N epochs (default: 1)
 - `--video_fps`: Frames per second for the reconstruction progress video (default: 2)
 
+### Generating the Reconstruction Progress Animation
+
+The repository includes a script to generate the reconstruction progress animation from individual frame images:
+
+```bash
+python create_gif.py
+```
+
+This script will:
+1. Read all PNG files in the `reconstruction_frames/` directory
+2. Sort them by epoch number
+3. Combine them into a GIF animation at 2 frames per second
+4. Save the result as `reconstruction_progress.gif`
+
+You can customize this process by modifying the parameters in the script.
+
 ## Results
 
 During and after training, the model will generate:
@@ -103,9 +121,10 @@ During and after training, the model will generate:
 - `main.py`: Main script for training and evaluating the VAE
 - `vae_model.py`: Implementation of the VAE architecture and loss function
 - `utils.py`: Utility functions for visualization and data processing
+- `create_gif.py`: Script to generate the reconstruction progress GIF from individual frames
 - `requirements.txt`: Required Python packages
 - `reconstruction_frames/`: Contains individual frames showing the progression of reconstruction quality
-- `reconstruction_progress.gif`: Animation showing how reconstructions improve throughout training
+- `reconstruction_progress.gif`: Animation showing how reconstructions improve throughout training (for pedagogical purposes)
 
 ## References
 
