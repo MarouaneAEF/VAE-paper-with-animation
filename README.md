@@ -8,7 +8,7 @@ This repository contains a PyTorch implementation of a Variational Autoencoder (
 
 **The animation above is included for pedagogical purposes.** It shows the progressive improvement of the VAE's reconstruction capabilities during training. The top row displays original images from the CIFAR-10 dataset, while the bottom row shows the corresponding reconstructions produced by the VAE at different training epochs. This visualization is invaluable for understanding how VAEs learn to compress and reconstruct data over time.
 
-*This animation was created using the `create_gif.py` script in this repository, which combines individual frame images showing reconstructions across 10 epochs of training.*
+*This animation was created using the `create_gif.py` script in this repository, which combines individual frame images showing reconstructions from epoch 0 (untrained model) through epoch 12. The stark difference between the initial random reconstructions and the final results highlights the learning process.*
 
 ## What is a VAE?
 
@@ -104,6 +104,8 @@ This script will:
 3. Combine them into a GIF animation at 2 frames per second
 4. Save the result as `reconstruction_progress.gif`
 
+The current animation includes 13 frames, starting from epoch 0 (untrained model) through epoch 12, showing the complete learning progression of the VAE.
+
 You can customize this process by modifying the parameters in the script.
 
 ## Results
@@ -123,8 +125,8 @@ During and after training, the model will generate:
 - `utils.py`: Utility functions for visualization and data processing
 - `create_gif.py`: Script to generate the reconstruction progress GIF from individual frames
 - `requirements.txt`: Required Python packages
-- `reconstruction_frames/`: Contains individual frames showing the progression of reconstruction quality
-- `reconstruction_progress.gif`: Animation showing how reconstructions improve throughout training (for pedagogical purposes)
+- `reconstruction_frames/`: Contains frame images from epochs 0-12 showing the progression of reconstruction quality
+- `reconstruction_progress.gif`: Animation showing the complete learning progression of the VAE from untrained (epoch 0) to trained (epoch 12)
 
 ## References
 
